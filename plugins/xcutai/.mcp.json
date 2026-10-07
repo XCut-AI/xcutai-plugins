@@ -2,7 +2,7 @@
   "mcpServers": {
     "xcutai": {
       "type": "http",
-      "url": "https://mcp.xcut.ai/mcp"
+      "url": "https://mcp.xcut.ai/claude/mcp"
     }
   }
 }

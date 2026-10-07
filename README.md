@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=XCut%20AI&connectorUrl=https%3A%2F%2Fmcp.xcut.ai%2Fmcp"><img alt="Add to Claude" src="https://img.shields.io/badge/Add_to-Claude-D97757?style=for-the-badge&labelColor=1a1a1a"></a>
+  <a href="https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=XCut%20AI&connectorUrl=https%3A%2F%2Fmcp.xcut.ai%2Fclaude%2Fmcp"><img alt="Add to Claude" src="https://img.shields.io/badge/Add_to-Claude-D97757?style=for-the-badge&labelColor=1a1a1a"></a>
   <a href="https://cursor.com/en/install-mcp?name=xcutai&config=eyJ1cmwiOiJodHRwczovL21jcC54Y3V0LmFpL21jcCJ9"><img alt="Add to Cursor" src="https://img.shields.io/badge/Add_to-Cursor-ffffff?style=for-the-badge&labelColor=1a1a1a"></a>
   <a href="https://vscode.dev/redirect/mcp/install?name=xcutai&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.xcut.ai%2Fmcp%22%7D"><img alt="Add to VS Code" src="https://img.shields.io/badge/Add_to-VS_Code-0098FF?style=for-the-badge&labelColor=1a1a1a"></a>
   <a href="https://xcut.ai/mcp"><img alt="All apps" src="https://img.shields.io/badge/Setup-All_apps-9F17AD?style=for-the-badge&labelColor=1a1a1a"></a>
@@ -28,7 +28,7 @@
 https://mcp.xcut.ai/mcp
 ```
 
-Paste it into any app that supports remote MCP servers. Hooks, playbooks and quick tools work straight away with no account. Tools that use your canvases, brand memory or credits ask you to sign in to XCut AI once.
+Paste it into any app that supports remote MCP servers. For Claude, use `https://mcp.xcut.ai/claude/mcp`. Hooks, playbooks and quick tools work straight away with no account. Tools that use your canvases, brand memory or credits ask you to sign in to XCut AI once.
 
 ## What you can ask
 
@@ -49,7 +49,7 @@ Paste it into any app that supports remote MCP servers. Hooks, playbooks and qui
 <details open>
 <summary><b>Claude</b> (web, desktop, mobile)</summary>
 
-1. Click **Add to Claude** above, or open **Customize → Connectors → Add custom connector** and paste the server URL.
+1. Click **Add to Claude** above, or open **Customize → Connectors → Add custom connector** and paste `https://mcp.xcut.ai/claude/mcp` (the Claude version of the server).
 2. Under Authentication, choose **Sign in when needed**.
 3. Ask anything. Claude asks you to sign in to XCut AI only when a tool needs your account.
 </details>
@@ -89,7 +89,7 @@ In Gemini on the web: **Settings → Connected Apps → Add a custom app**, past
 /plugin install xcutai@xcutai
 ```
 
-Then run `/mcp` and sign in. Server only: `claude mcp add --transport http xcutai https://mcp.xcut.ai/mcp`
+Then run `/mcp` and sign in. Server only: `claude mcp add --transport http xcutai https://mcp.xcut.ai/claude/mcp`
 </details>
 
 <details>
