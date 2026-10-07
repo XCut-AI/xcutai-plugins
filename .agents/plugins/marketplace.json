@@ -1,0 +1,20 @@
+{
+  "name": "xcutai",
+  "interface": {
+    "displayName": "XCut AI"
+  },
+  "plugins": [
+    {
+      "name": "xcutai",
+      "source": {
+        "source": "local",
+        "path": "./plugins/xcutai"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

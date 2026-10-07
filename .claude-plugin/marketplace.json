@@ -1,0 +1,16 @@
+{
+  "name": "xcutai",
+  "description": "XCut AI: viral content research and writing for Instagram, TikTok, YouTube and Facebook.",
+  "owner": {
+    "name": "XCut AI",
+    "email": "support@xcut.ai",
+    "url": "https://xcut.ai"
+  },
+  "plugins": [
+    {
+      "name": "xcutai",
+      "source": "./plugins/xcutai",
+      "description": "Find outlier posts, hooks and ads on Instagram, TikTok, YouTube and Facebook, then turn them into scripts and a content calendar for your brand."
+    }
+  ]
+}

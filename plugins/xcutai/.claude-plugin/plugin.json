@@ -1,0 +1,27 @@
+{
+  "name": "xcutai",
+  "displayName": "XCut AI",
+  "version": "1.0.0",
+  "description": "Find outlier posts, hooks and ads on Instagram, TikTok, YouTube and Facebook, then turn them into scripts and a content calendar for your brand.",
+  "author": {
+    "name": "XCut AI",
+    "email": "support@xcut.ai",
+    "url": "https://xcut.ai"
+  },
+  "homepage": "https://xcut.ai/mcp",
+  "license": "MIT",
+  "keywords": [
+    "social media",
+    "content",
+    "viral",
+    "instagram",
+    "tiktok",
+    "youtube",
+    "facebook",
+    "meta ads",
+    "hooks",
+    "scripts",
+    "content calendar",
+    "mcp"
+  ]
+}

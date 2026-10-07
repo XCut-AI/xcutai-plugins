@@ -1,0 +1,51 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "xcutai",
+  "version": "1.0.0",
+  "description": "Find outlier posts, hooks and ads on Instagram, TikTok, YouTube and Facebook, then turn them into scripts and a content calendar for your brand.",
+  "author": {
+    "name": "XCut AI",
+    "email": "support@xcut.ai",
+    "url": "https://xcut.ai"
+  },
+  "homepage": "https://xcut.ai/mcp",
+  "license": "MIT",
+  "keywords": [
+    "social media",
+    "content",
+    "viral",
+    "instagram",
+    "tiktok",
+    "youtube",
+    "facebook",
+    "meta ads",
+    "hooks",
+    "scripts",
+    "content calendar",
+    "mcp"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "XCut AI",
+        "shortDescription": "Viral content research and writing for social media",
+        "longDescription": "Search what is performing on Instagram, TikTok, YouTube, Facebook and the Meta Ad Library, see which of a profile's posts beat its own normal, pull per-post analytics, import posts onto an XCut AI canvas, and write scripts, hooks, captions and content plans in your brand voice. XCut AI imports publicly available posts, profiles and ads, using official platform APIs and licensed data providers. It never publishes to social media. This plugin does not sell products or process payments.",
+        "developerName": "XCut AI",
+        "category": "Productivity",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "websiteURL": "https://xcut.ai",
+        "privacyPolicyURL": "https://xcut.ai/privacy-policy",
+        "termsOfServiceURL": "https://xcut.ai/terms-conditions",
+        "defaultPrompt": [
+          "Use XCut AI to find what's going viral on TikTok in my niche this week.",
+          "Use XCut AI to show which of a competitor's last 30 reels were outliers.",
+          "Use XCut AI to write 3 Reel scripts from those outliers in my brand's voice."
+        ],
+        "brandColor": "#EC4899"
+      }
+    }
+  }
+}
