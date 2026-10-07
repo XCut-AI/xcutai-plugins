@@ -123,7 +123,7 @@ Use the buttons above, or add the server URL as a remote MCP server. Apps that c
 | **Create** | Scripts, hooks, captions and ad copy from XCut AI's own agents, written with your brand memory · ready-made playbooks (month and week plans, teardowns, ad angles) | Sign in, uses credits |
 | **Workspace** | Your canvases, brand memory, content calendar, credit balance | Sign in |
 
-The plugin for Claude Code and Codex adds three skills that teach the assistant how to chain these tools: `viral-research`, `outlier-to-script` and `content-plan`.
+The plugin for Claude Code, Codex and ChatGPT adds seven skills that teach the assistant how to chain these tools: `viral-research`, `content-ideas`, `outlier-to-script`, `hooks-captions-bios`, `analytics-review`, `meta-ads-research` and `content-plan`.
 
 ## Good to know
 

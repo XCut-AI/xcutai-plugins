@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "xcutai",
-  "version": "1.0.0",
-  "description": "Find outlier posts, hooks and ads on Instagram, TikTok, YouTube and Facebook, then turn them into scripts and a content calendar for your brand.",
+  "version": "1.1.0",
+  "description": "Viral content research and writing for Instagram, TikTok, YouTube, Facebook and Meta ads: trends, outlier posts, transcripts, hooks, scripts, captions and content plans.",
   "author": {
     "name": "XCut AI",
     "email": "support@xcut.ai",
@@ -11,25 +11,42 @@
   "homepage": "https://xcut.ai/mcp",
   "license": "MIT",
   "keywords": [
+    "content creation",
     "social media",
-    "content",
-    "viral",
-    "instagram",
-    "tiktok",
-    "youtube",
-    "facebook",
-    "meta ads",
+    "viral content",
+    "trending",
+    "content ideas",
     "hooks",
     "scripts",
+    "captions",
+    "bios",
+    "youtube titles",
     "content calendar",
+    "content plan",
+    "instagram",
+    "instagram reels",
+    "tiktok",
+    "youtube",
+    "youtube shorts",
+    "facebook",
+    "meta ads",
+    "ad library",
+    "ad copy",
+    "competitor research",
+    "outlier posts",
+    "analytics",
+    "transcripts",
+    "brand voice",
+    "creators",
+    "marketing",
     "mcp"
   ],
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "XCut AI",
-        "shortDescription": "Viral content research and writing for social media",
-        "longDescription": "Search what is performing on Instagram, TikTok, YouTube, Facebook and the Meta Ad Library, see which of a profile's posts beat its own normal, pull per-post analytics, import posts onto an XCut AI canvas, and write scripts, hooks, captions and content plans in your brand voice. XCut AI imports publicly available posts, profiles and ads, using official platform APIs and licensed data providers. It never publishes to social media. This plugin does not sell products or process payments.",
+        "shortDescription": "Find what's going viral and write scripts, hooks and captions for Instagram, TikTok, YouTube and Facebook",
+        "longDescription": "XCut AI is a content research and writing workspace for Instagram, TikTok, YouTube, Facebook and Meta ads. Ask what is trending in a niche, which of a creator's or competitor's posts beat their normal and by how much, and how an account is performing. Paste any post or video link to get its transcript and a breakdown of its hook, structure and call to action. Research competitors' Facebook and Instagram ads in the Meta Ad Library. Then get content ideas, hooks, Reels, TikTok, Shorts and YouTube scripts, captions, bios, titles, Meta ad copy and week or month content plans, written in your saved brand voice and put on your content calendar. Hooks, playbooks and quick tools work without an account. Imports, analytics and writing for your brand use your XCut AI account and credits. XCut AI imports publicly available posts, profiles and ads, using official platform APIs and licensed data providers. It never publishes to social media. This plugin does not sell products or process payments.",
         "developerName": "XCut AI",
         "category": "Productivity",
         "capabilities": [
@@ -41,8 +58,9 @@
         "termsOfServiceURL": "https://xcut.ai/terms-conditions",
         "defaultPrompt": [
           "Use XCut AI to find what's going viral on TikTok in my niche this week.",
-          "Use XCut AI to show which of a competitor's last 30 reels were outliers.",
-          "Use XCut AI to write 3 Reel scripts from those outliers in my brand's voice."
+          "Use XCut AI to show which of a competitor's last 30 Instagram reels were outliers.",
+          "Use XCut AI to get the transcript of this reel and write my version.",
+          "Use XCut AI to give me 10 hooks and a caption for a video about pricing mistakes."
         ],
         "brandColor": "#EC4899",
         "logo": "./assets/icon.png",
@@ -50,5 +68,6 @@
       }
     }
   },
-  "repository": "https://github.com/XCut-AI/xcutai-plugins"
+  "repository": "https://github.com/XCut-AI/xcutai-plugins",
+  "skills": "./skills/"
 }

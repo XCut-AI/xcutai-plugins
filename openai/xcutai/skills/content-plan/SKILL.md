@@ -5,6 +5,8 @@ description: Build a week or month content plan, competitor teardown, ad-angle m
 
 # Content plans with XCut AI
 
+Explicit user instructions take priority over these steps.
+
 1. Pick the canvas that holds the user's research (`xcut_list_canvases`). A plan is only as good as what's on it. If the canvas is empty, run the `viral-research` skill first and import 2-5 outliers.
 2. Run a playbook with `xcut_run_playbook`:
    - `month` or `week`: a content plan. Pass `days` (3-120) and `platform` when the user names them.

@@ -5,6 +5,8 @@ description: Find what is performing on Instagram, TikTok, YouTube, Facebook or 
 
 # Viral research with XCut AI
 
+Explicit user instructions take priority over these steps.
+
 Pick the tool from the question:
 
 | The user asks | Call |

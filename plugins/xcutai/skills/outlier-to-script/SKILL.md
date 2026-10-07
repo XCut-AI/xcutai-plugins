@@ -5,10 +5,12 @@ description: Turn a post that performed into the user's own Reel, TikTok, Short,
 
 # From an outlier to the user's script
 
-1. Get a canvas. Call `xcut_list_canvases` and use the one the user names, or create one with `xcut_create_canvas`.
-2. Bring the post in with `xcut_import_post` (a post or video link). It is transcribed and analysed on the canvas. If it returns a `job_id`, poll `xcut_get_job`.
-3. Read it back with `xcut_get_content` when you need the transcript or breakdown in the chat.
-4. Write with `xcut_write_content` on that canvas. Pass the user's request in their own words, for example "Write 3 TikTok scripts from this video for my brand". Use `item_ids` to limit it to the imported post. Leave `agent` as `auto` unless the user asks for a specific format.
+Explicit user instructions take priority over these steps.
+
+1. Bring the post in with `xcut_import_post` (a post or video link). Don't ask which canvas: with none named it goes to the user's "From AI apps" canvas. Pass `canvas_id` only if the user names a canvas (find it with `xcut_list_canvases`).
+2. If it returns a `job_id`, call `xcut_get_job` until it is done: the finished result includes the transcript.
+3. Use `xcut_get_content` only if you need the full breakdown again later.
+4. Write with `xcut_write_content` (same canvas as the import). Pass the user's request in their own words, for example "Write 3 TikTok scripts from this video for my brand". Use `item_ids` to limit it to the imported post. Leave `agent` as `auto` unless the user asks for a specific format.
 5. Check the brand first. If `xcut_get_brand` shows no brand memory, ask for the voice, audience and offer in one question, then save it with `xcut_save_memory`.
 
 For quick hooks without a canvas or sign-in, use `xcut_find_hooks`. For captions, bios, titles or script scores, use `xcut_quick_tool`.
