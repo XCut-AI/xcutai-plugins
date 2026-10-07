@@ -37,15 +37,18 @@
           "Write"
         ],
         "websiteURL": "https://xcut.ai",
-        "privacyPolicyURL": "https://xcut.ai/privacy-policy",
+        "privacyPolicyURL": "https://xcut.ai/privacy-policy#ai-assistants",
         "termsOfServiceURL": "https://xcut.ai/terms-conditions",
         "defaultPrompt": [
           "Use XCut AI to find what's going viral on TikTok in my niche this week.",
           "Use XCut AI to show which of a competitor's last 30 reels were outliers.",
           "Use XCut AI to write 3 Reel scripts from those outliers in my brand's voice."
         ],
-        "brandColor": "#EC4899"
+        "brandColor": "#EC4899",
+        "logo": "./.claude-plugin/icon.png",
+        "composerIcon": "./.claude-plugin/icon.png"
       }
     }
-  }
+  },
+  "repository": "https://github.com/XCut-AI/xcutai-plugins"
 }
