@@ -8,7 +8,7 @@
       "name": "xcutai",
       "source": {
         "source": "local",
-        "path": "./plugins/xcutai"
+        "path": "./openai/xcutai"
       },
       "policy": {
         "installation": "AVAILABLE",

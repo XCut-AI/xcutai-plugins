@@ -25,7 +25,6 @@
     "mcp"
   ],
   "repository": "https://github.com/XCut-AI/xcutai-plugins",
-  "icon": "./.claude-plugin/icon.png",
   "documentationUrl": "https://xcut.ai/mcp",
   "supportUrl": "mailto:support@xcut.ai",
   "privacyPolicyUrl": "https://xcut.ai/privacy-policy#ai-assistants",

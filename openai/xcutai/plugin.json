@@ -45,8 +45,8 @@
           "Use XCut AI to write 3 Reel scripts from those outliers in my brand's voice."
         ],
         "brandColor": "#EC4899",
-        "logo": "./.claude-plugin/icon.png",
-        "composerIcon": "./.claude-plugin/icon.png"
+        "logo": "./assets/icon.png",
+        "composerIcon": "./assets/icon.png"
       }
     }
   },

@@ -136,8 +136,9 @@ The plugin for Claude Code and Codex adds three skills that teach the assistant 
 
 ```
 .claude-plugin/marketplace.json    Claude Code marketplace
+plugins/xcutai/                    Claude Code plugin: manifest, MCP config, skills
 .agents/plugins/marketplace.json   Codex / ChatGPT marketplace
-plugins/xcutai/                    the plugin: manifests, MCP config, skills
+openai/xcutai/                     Codex / ChatGPT plugin: manifest, MCP config, skills
 ```
 
 ---
