@@ -110,6 +110,12 @@ Server only: `codex mcp add xcutai --url https://mcp.xcut.ai/mcp`, then `codex m
 </details>
 
 <details>
+<summary><b>Cline</b></summary>
+
+Add `https://mcp.xcut.ai/mcp` as a remote server with `"type": "streamableHttp"`. Step-by-step: [llms-install.md](llms-install.md).
+</details>
+
+<details>
 <summary><b>Cursor, VS Code, Perplexity, Le Chat and others</b></summary>
 
 Use the buttons above, or add the server URL as a remote MCP server. Apps that can't sign in can use a personal API key from **Settings → Connected apps**:
