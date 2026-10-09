@@ -79,6 +79,12 @@ Create an API key in XCut AI under **Settings → Connected apps**, then ask Mus
 <summary><b>Gemini</b></summary>
 
 In Gemini on the web: **Settings → Connected Apps → Add a custom app**, paste the server URL and sign in.
+
+In Gemini CLI:
+
+```bash
+gemini extensions install https://github.com/XCut-AI/xcutai-plugins
+```
 </details>
 
 <details>

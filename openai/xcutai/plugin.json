@@ -116,7 +116,8 @@
           ]
         },
         "commerce": false,
-        "commerce_description": "This plugin does not sell products or process payments."
+        "commerce_description": "This plugin does not sell products or process payments.",
+        "demo_recording_url": "https://www.loom.com/share/8241688a87884436aa1b6e3484d6e4f6"
       },
       "publication": {
         "release_notes": "1.1.0, first public release. Social media content research and writing: viral post search across Instagram, TikTok, YouTube, Facebook and the Meta Ad Library; outlier and analytics reports for public profiles; post, profile, website and ad imports with transcripts; hooks, scripts, captions and content plans in the user's brand voice; content calendar drafts. Seven bundled skills. Never publishes to social media."

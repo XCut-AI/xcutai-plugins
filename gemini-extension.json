@@ -1,0 +1,11 @@
+{
+  "name": "xcutai",
+  "version": "1.1.0",
+  "description": "Find viral posts, outliers, hooks and ads on Instagram, TikTok, YouTube and Facebook, then write them in your brand's voice.",
+  "mcpServers": {
+    "xcutai": {
+      "httpUrl": "https://mcp.xcut.ai/mcp"
+    }
+  },
+  "contextFileName": "GEMINI.md"
+}
