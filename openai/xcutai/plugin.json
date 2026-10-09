@@ -45,26 +45,81 @@
     "com.openai": {
       "interface": {
         "displayName": "XCut AI",
-        "shortDescription": "Find what's going viral and write scripts, hooks and captions for Instagram, TikTok, YouTube and Facebook",
-        "longDescription": "XCut AI is a content research and writing workspace for Instagram, TikTok, YouTube, Facebook and Meta ads. Ask what is trending in a niche, which of a creator's or competitor's posts beat their normal and by how much, and how an account is performing. Paste any post or video link to get its transcript and a breakdown of its hook, structure and call to action. Research competitors' Facebook and Instagram ads in the Meta Ad Library. Then get content ideas, hooks, Reels, TikTok, Shorts and YouTube scripts, captions, bios, titles, Meta ad copy and week or month content plans, written in your saved brand voice and put on your content calendar. Hooks, playbooks and quick tools work without an account. Imports, analytics and writing for your brand use your XCut AI account and credits. XCut AI imports publicly available posts, profiles and ads, using official platform APIs and licensed data providers. It never publishes to social media. This plugin does not sell products or process payments.",
+        "shortDescription": "Viral post research & scripts",
+        "longDescription": "XCut AI helps creators, brands and marketers make social media content that performs. It researches what is working on Instagram, TikTok, YouTube, Facebook and in the Meta Ad Library, then writes content from it. Ask what is trending in a niche, which of a creator's or competitor's posts beat their normal and by how much, and how an account is performing. Paste any post or video link to get its transcript and a breakdown of its hook, structure and call to action. Then get content ideas, hooks, Reels, TikTok, Shorts and YouTube scripts, captions, bios, titles, Meta ad copy and week or month content plans, written in your saved brand voice and put on your content calendar. Hooks, playbooks and quick tools work without an account. Imports, analytics and writing for your brand use your XCut AI account and credits. Limitations: XCut AI works only with publicly available posts, profiles and ads, imported through official platform APIs and licensed data providers. It never publishes to social media. This plugin does not sell products or process payments.",
         "developerName": "XCut AI",
-        "category": "Productivity",
+        "category": "Creativity",
         "capabilities": [
           "Read",
           "Write"
         ],
         "websiteURL": "https://xcut.ai",
-        "privacyPolicyURL": "https://xcut.ai/privacy-policy#ai-assistants",
+        "supportURL": "https://xcut.ai/mcp",
+        "privacyPolicyURL": "https://xcut.ai/privacy-policy",
         "termsOfServiceURL": "https://xcut.ai/terms-conditions",
         "defaultPrompt": [
-          "Use XCut AI to find what's going viral on TikTok in my niche this week.",
-          "Use XCut AI to show which of a competitor's last 30 Instagram reels were outliers.",
-          "Use XCut AI to get the transcript of this reel and write my version.",
-          "Use XCut AI to give me 10 hooks and a caption for a video about pricing mistakes."
+          "What's going viral on TikTok in my niche this week?",
+          "Which of a competitor's last 30 Instagram reels were outliers?",
+          "Give me 10 hooks and a caption for a video about pricing mistakes."
         ],
         "brandColor": "#EC4899",
         "logo": "./assets/icon.png",
         "composerIcon": "./assets/icon.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Hook ideas without signing in",
+              "prompt": "Give me 10 hooks for a reel about pricing mistakes.",
+              "tools_triggered": "xcut_find_hooks",
+              "expected_behavior": "Returns 10 hook lines from XCut AI's hook library, adapted to a reel about pricing mistakes."
+            },
+            {
+              "description": "What is trending in a niche",
+              "prompt": "What's going viral on TikTok for skincare this week?",
+              "tools_triggered": "xcut_search_viral",
+              "expected_behavior": "Returns a list of TikTok posts about skincare with views, engagement and links to each post."
+            },
+            {
+              "description": "A public account's standout posts",
+              "prompt": "Which of @nike's last 20 Instagram posts were outliers?",
+              "tools_triggered": "xcut_find_outliers, xcut_get_job",
+              "expected_behavior": "Lists the posts that beat the account's median performance and says by how much each beat it. If the analysis takes longer, it checks the job and then returns the list."
+            },
+            {
+              "description": "Transcript and hook breakdown of a video",
+              "prompt": "Get the transcript of https://www.youtube.com/watch?v=jNQXAC9IVRw and tell me why the opening works.",
+              "tools_triggered": "xcut_import_post, xcut_get_content",
+              "expected_behavior": "Returns the video's transcript and explains its opening hook, structure and ending."
+            },
+            {
+              "description": "Script in the saved brand voice",
+              "prompt": "Write a 30-second TikTok script about pricing mistakes in my brand voice.",
+              "tools_triggered": "xcut_get_brand, xcut_write_content",
+              "expected_behavior": "Returns a TikTok script with a hook, body and call to action that follows the brand voice saved in the account."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Off-topic request: XCut AI is only for social media and marketing content, so it should not be called; the assistant answers without it.",
+              "prompt": "What's the weather in Paris tomorrow?"
+            },
+            {
+              "description": "Publishing request: XCut AI never posts to social media. Expected: it says it cannot post and offers to save the caption as a draft on the XCut AI content calendar.",
+              "prompt": "Post this caption to my Instagram now: 'New drop Friday'."
+            },
+            {
+              "description": "Private content: XCut AI works only with publicly available posts, profiles and ads. Expected: no import, and an explanation that private messages cannot be accessed.",
+              "prompt": "Show me the private DMs of @nike."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "This plugin does not sell products or process payments."
+      },
+      "publication": {
+        "release_notes": "1.1.0, first public release. Social media content research and writing: viral post search across Instagram, TikTok, YouTube, Facebook and the Meta Ad Library; outlier and analytics reports for public profiles; post, profile, website and ad imports with transcripts; hooks, scripts, captions and content plans in the user's brand voice; content calendar drafts. Seven bundled skills. Never publishes to social media."
       }
     }
   },

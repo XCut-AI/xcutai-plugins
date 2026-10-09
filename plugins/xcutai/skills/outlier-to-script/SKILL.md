@@ -13,6 +13,6 @@ Explicit user instructions take priority over these steps.
 4. Write with `xcut_write_content` (same canvas as the import). Pass the user's request in their own words, for example "Write 3 TikTok scripts from this video for my brand". Use `item_ids` to limit it to the imported post. Leave `agent` as `auto` unless the user asks for a specific format.
 5. Check the brand first. If `xcut_get_brand` shows no brand memory, ask for the voice, audience and offer in one question, then save it with `xcut_save_memory`.
 
-For quick hooks without a canvas or sign-in, use `xcut_find_hooks`. For captions, bios, titles or script scores, use `xcut_quick_tool`.
+For quick hooks without a canvas or sign-in, use `xcut_find_hooks`. For captions, bios, titles or script scores, use `xcut_write_caption`, `xcut_rewrite_bio`, `xcut_youtube_titles` or `xcut_analyze_script`.
 
 Show the result in the chat and mention it is also saved on the user's XCut AI canvas.
