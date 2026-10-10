@@ -1,0 +1,2566 @@
+{
+  "identifier": "xcutai",
+  "name": "XCut AI",
+  "version": "1.0.0",
+  "description": "Find viral posts, outliers, hooks and ads on Instagram, TikTok, YouTube and Facebook, then write.",
+  "author": "XCut-AI",
+  "authorUrl": "https://github.com/XCut-AI",
+  "homepage": "https://xcut.ai/mcp",
+  "cloudEndpoint": "https://mcp.xcut.ai/mcp",
+  "icon": "https://raw.githubusercontent.com/XCut-AI/xcutai-plugins/main/assets/logo.png",
+  "category": "social",
+  "tags": [
+    "mcp",
+    "social-media",
+    "instagram",
+    "tiktok",
+    "youtube",
+    "facebook",
+    "viral",
+    "content-marketing",
+    "hooks",
+    "scripts"
+  ],
+  "localizations": [
+    {
+      "locale": "en-US",
+      "name": "XCut AI",
+      "description": "Find viral posts, outliers, hooks and ads on Instagram, TikTok, YouTube and Facebook, then write.",
+      "summary": "XCut AI is a hosted MCP server for social media content. Ask your AI what's going viral in a niche, which of a creator's or competitor's posts beat their own average, why a post worked (transcript and hook), and what ads run in the Meta Ad Library. Then write hooks, captions, scripts, carousels and content calendars in your brand's voice. 39 tools. Never posts to social media."
+    }
+  ],
+  "tools": [
+    {
+      "name": "xcut_find_hooks",
+      "title": "Find proven hooks",
+      "description": "Use this when the user wants hooks, opening lines or first sentences for a post, Reel, TikTok, Short, YouTube video or ad. Returns proven hook templates matched to the topic, from XcutAI's library of about 1,000 hooks taken from posts that performed, each with slots for the user's subject. The library and topic search are in English. Free; no sign-in. Do not use for formats, script structures or platform facts (use xcut_get_playbook) or for a finished caption (use xcut_write_caption).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "description": "What the post is about, in English. e.g. 'pricing mistakes for small bakeries'",
+            "maxLength": 200,
+            "minLength": 2,
+            "title": "Topic",
+            "type": "string"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "enum": [
+                  "EDUCATIONAL",
+                  "COMPARISON",
+                  "MYTH BUSTING",
+                  "STORYTELLING",
+                  "RANDOM",
+                  "AUTHORITY",
+                  "DAY IN THE LIFE"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional hook family to restrict to.",
+            "title": "Category"
+          },
+          "limit": {
+            "default": 8,
+            "description": "How many templates (default 8).",
+            "maximum": 15,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "topic"
+        ],
+        "title": "xcut_find_hooksArguments"
+      },
+      "annotations": {
+        "title": "Find proven hooks",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_get_playbook",
+      "title": "Get a content playbook",
+      "description": "Use this when the user asks how to structure a Reel, TikTok, Short, YouTube video, carousel, caption, content plan, offer or ad, or how a platform's algorithm, hashtags or profile setup work. Call it before writing so the answer follows formats that performed. Returns beat-by-beat video formats with timings, storytelling and retention principles, hook families, paid-ad frameworks and platform facts including documented myths and hashtag limits. Free; no sign-in. Describe the goal in plain English with platform and format. Do not use for hook templates (use xcut_find_hooks).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "goal": {
+            "description": "What is being made or decided, in English, with platform and format. e.g. 'instagram carousel that gets saved', 'tutorial reel structure', 'how many hashtags on instagram'",
+            "maxLength": 300,
+            "minLength": 3,
+            "title": "Goal",
+            "type": "string"
+          },
+          "kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "structure",
+                  "principle",
+                  "hook_type",
+                  "ad_framework",
+                  "platform_fact"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional: structure (formats), principle, hook_type, ad_framework or platform_fact.",
+            "title": "Kind"
+          },
+          "limit": {
+            "default": 3,
+            "description": "How many entries (default 3).",
+            "maximum": 4,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "goal"
+        ],
+        "title": "xcut_get_playbookArguments"
+      },
+      "annotations": {
+        "title": "Get a content playbook",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_hook_ideas",
+      "title": "Hook ideas",
+      "description": "Use this when the user wants 10 new hook variations written for their niche and topic on YouTube, TikTok or Instagram. For proven hook templates from posts that performed, use xcut_find_hooks. Free; no sign-in. Output is generic: for work based on the user's own posts, canvases or brand, use the signed-in XcutAI tools. Do not use for writing unrelated to social media or marketing content.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "description": "Where the hooks will be used.",
+            "enum": [
+              "youtube",
+              "tiktok",
+              "instagram"
+            ],
+            "title": "Platform",
+            "type": "string"
+          },
+          "niche": {
+            "description": "The creator's niche, e.g. \"fitness for busy moms\".",
+            "maxLength": 100,
+            "minLength": 2,
+            "title": "Niche",
+            "type": "string"
+          },
+          "topic": {
+            "description": "What the post is about.",
+            "maxLength": 300,
+            "minLength": 2,
+            "title": "Topic",
+            "type": "string"
+          }
+        },
+        "required": [
+          "platform",
+          "niche",
+          "topic"
+        ],
+        "title": "xcut_hook_ideasArguments"
+      },
+      "annotations": {
+        "title": "Hook ideas",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_write_caption",
+      "title": "Write caption",
+      "description": "Use this when the user wants a finished caption (hook, body, CTA and hashtags) for an Instagram, TikTok or YouTube Shorts post from a short concept. Free; no sign-in. Output is generic: for work based on the user's own posts, canvases or brand, use the signed-in XcutAI tools. Do not use for writing unrelated to social media or marketing content.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "description": "Where the caption will be posted.",
+            "enum": [
+              "instagram",
+              "tiktok",
+              "youtube_shorts"
+            ],
+            "title": "Platform",
+            "type": "string"
+          },
+          "concept": {
+            "description": "What the post shows or says, in a sentence or two.",
+            "maxLength": 3000,
+            "minLength": 10,
+            "title": "Concept",
+            "type": "string"
+          },
+          "tone": {
+            "default": "engaging",
+            "description": "Voice of the caption, e.g. \"engaging\", \"funny\", \"calm\".",
+            "maxLength": 50,
+            "title": "Tone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "platform",
+          "concept"
+        ],
+        "title": "xcut_write_captionArguments"
+      },
+      "annotations": {
+        "title": "Write caption",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_rewrite_bio",
+      "title": "Rewrite bio",
+      "description": "Use this when the user wants their profile bio rewritten for Instagram, YouTube, TikTok, X or LinkedIn. Free; no sign-in. Output is generic: for work based on the user's own posts, canvases or brand, use the signed-in XcutAI tools. Do not use for writing unrelated to social media or marketing content.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "description": "Which profile the bio is for.",
+            "enum": [
+              "instagram",
+              "youtube",
+              "tiktok",
+              "twitter",
+              "linkedin"
+            ],
+            "title": "Platform",
+            "type": "string"
+          },
+          "current_bio": {
+            "description": "The bio as it reads today.",
+            "maxLength": 500,
+            "minLength": 5,
+            "title": "Current Bio",
+            "type": "string"
+          },
+          "niche": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "The creator's niche, if not obvious from the bio.",
+            "title": "Niche"
+          }
+        },
+        "required": [
+          "platform",
+          "current_bio"
+        ],
+        "title": "xcut_rewrite_bioArguments"
+      },
+      "annotations": {
+        "title": "Rewrite bio",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_youtube_titles",
+      "title": "Youtube titles",
+      "description": "Use this when the user wants YouTube title options, with thumbnail ideas, for a video topic. Free; no sign-in. Output is generic: for work based on the user's own posts, canvases or brand, use the signed-in XcutAI tools. Do not use for writing unrelated to social media or marketing content.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "description": "What the YouTube video is about.",
+            "maxLength": 300,
+            "minLength": 5,
+            "title": "Topic",
+            "type": "string"
+          },
+          "niche": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "The channel's niche, optional.",
+            "title": "Niche"
+          }
+        },
+        "required": [
+          "topic"
+        ],
+        "title": "xcut_youtube_titlesArguments"
+      },
+      "annotations": {
+        "title": "Youtube titles",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_analyze_script",
+      "title": "Analyze script",
+      "description": "Use this when the user wants a script scored on its hook, pacing, retention risk and CTA. Free; no sign-in. Output is generic: for work based on the user's own posts, canvases or brand, use the signed-in XcutAI tools. Do not use for writing unrelated to social media or marketing content.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "script": {
+            "description": "The full script to score (at least 50 characters).",
+            "maxLength": 3000,
+            "minLength": 50,
+            "title": "Script",
+            "type": "string"
+          }
+        },
+        "required": [
+          "script"
+        ],
+        "title": "xcut_analyze_scriptArguments"
+      },
+      "annotations": {
+        "title": "Analyze script",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_audit_content",
+      "title": "Audit content",
+      "description": "Use this when the user wants a consistency check across 3 to 10 of their past titles or captions. Free; no sign-in. Output is generic: for work based on the user's own posts, canvases or brand, use the signed-in XcutAI tools. Do not use for writing unrelated to social media or marketing content.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "titles_or_captions": {
+            "description": "3 to 10 past titles or captions, one per item.",
+            "items": {
+              "maxLength": 3000,
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 3,
+            "title": "Titles Or Captions",
+            "type": "array"
+          },
+          "platform": {
+            "default": "general",
+            "description": "Platform they were posted on, e.g. \"instagram\"; \"general\" if mixed.",
+            "maxLength": 50,
+            "title": "Platform",
+            "type": "string"
+          }
+        },
+        "required": [
+          "titles_or_captions"
+        ],
+        "title": "xcut_audit_contentArguments"
+      },
+      "annotations": {
+        "title": "Audit content",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_posting_plan",
+      "title": "Posting plan",
+      "description": "Use this when the user wants a posting plan drafted from a niche, posting frequency and content pillars. It is a text plan only; to put posts on the user's XcutAI calendar use xcut_add_to_calendar. Free; no sign-in. Output is generic: for work based on the user's own posts, canvases or brand, use the signed-in XcutAI tools. Do not use for writing unrelated to social media or marketing content.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "niche": {
+            "description": "The creator's niche.",
+            "maxLength": 100,
+            "minLength": 2,
+            "title": "Niche",
+            "type": "string"
+          },
+          "platform": {
+            "description": "Which platform the plan is for.",
+            "enum": [
+              "instagram",
+              "tiktok",
+              "youtube",
+              "linkedin"
+            ],
+            "title": "Platform",
+            "type": "string"
+          },
+          "posting_frequency": {
+            "description": "e.g. '3x/week', '1x/day'",
+            "pattern": "^\\d+x/(day|week|month)$",
+            "title": "Posting Frequency",
+            "type": "string"
+          },
+          "content_pillars": {
+            "description": "1 to 5 themes the account posts about.",
+            "items": {
+              "maxLength": 3000,
+              "type": "string"
+            },
+            "maxItems": 5,
+            "minItems": 1,
+            "title": "Content Pillars",
+            "type": "array"
+          }
+        },
+        "required": [
+          "niche",
+          "platform",
+          "posting_frequency",
+          "content_pillars"
+        ],
+        "title": "xcut_posting_planArguments"
+      },
+      "annotations": {
+        "title": "Posting plan",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_competitor_gaps",
+      "title": "Competitor gaps",
+      "description": "Use this when the user wants content gaps versus named competitors in their niche. Free; no sign-in. Output is generic: for work based on the user's own posts, canvases or brand, use the signed-in XcutAI tools. Do not use for writing unrelated to social media or marketing content.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "niche": {
+            "description": "The niche to compare in.",
+            "maxLength": 100,
+            "minLength": 2,
+            "title": "Niche",
+            "type": "string"
+          },
+          "competitor_names": {
+            "description": "1 to 5 competitor names or handles.",
+            "items": {
+              "maxLength": 200,
+              "type": "string"
+            },
+            "maxItems": 5,
+            "minItems": 1,
+            "title": "Competitor Names",
+            "type": "array"
+          }
+        },
+        "required": [
+          "niche",
+          "competitor_names"
+        ],
+        "title": "xcut_competitor_gapsArguments"
+      },
+      "annotations": {
+        "title": "Competitor gaps",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_check_niche",
+      "title": "Check niche",
+      "description": "Use this when the user wants to know whether a niche is viable before committing to it. Free; no sign-in. Output is generic: for work based on the user's own posts, canvases or brand, use the signed-in XcutAI tools. Do not use for writing unrelated to social media or marketing content.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "niche_description": {
+            "description": "The niche to check, described in a sentence or two.",
+            "maxLength": 3000,
+            "minLength": 10,
+            "title": "Niche Description",
+            "type": "string"
+          }
+        },
+        "required": [
+          "niche_description"
+        ],
+        "title": "xcut_check_nicheArguments"
+      },
+      "annotations": {
+        "title": "Check niche",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_repurpose_content",
+      "title": "Repurpose content",
+      "description": "Use this when the user wants one piece of content turned into TikTok, Reel, LinkedIn, X and email angles. Free; no sign-in. Output is generic: for work based on the user's own posts, canvases or brand, use the signed-in XcutAI tools. Do not use for writing unrelated to social media or marketing content.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "Title of the piece to repurpose.",
+            "maxLength": 300,
+            "minLength": 5,
+            "title": "Title",
+            "type": "string"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "maxLength": 3000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "What the piece covers, optional but gives better angles.",
+            "title": "Description"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "title": "xcut_repurpose_contentArguments"
+      },
+      "annotations": {
+        "title": "Repurpose content",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_get_account",
+      "title": "Get account and credits",
+      "description": "Use this when the user asks about their XcutAI plan, credit balance, monthly allowance, next refill date or trial, or before starting an import or analysis that costs credits. Free. Do not use for usage history (that is in XcutAI Settings, not available here).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "title": "xcut_get_accountArguments"
+      },
+      "annotations": {
+        "title": "Get account and credits",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_list_canvases",
+      "title": "List canvases",
+      "description": "Use this when you need a canvas id or the user asks what XcutAI canvases (projects) they have, including ones shared with them, newest first. Free. Do not call it just to import a post or write: those tools use the user's \"From AI apps\" canvas when no canvas is named.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "include_shared": {
+            "default": true,
+            "description": "Also list canvases shared with the user.",
+            "title": "Include Shared",
+            "type": "boolean"
+          },
+          "limit": {
+            "default": 30,
+            "description": "Most canvases to return, 1-100. Default 30.",
+            "maximum": 100,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "title": "xcut_list_canvasesArguments"
+      },
+      "annotations": {
+        "title": "List canvases",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_get_canvas",
+      "title": "Get a canvas",
+      "description": "Use this when the user asks what is on one of their XcutAI canvases: its items (imported posts, notes, chats, groups, Meta ads, analytics tables, websites, media) with ids, counts by type and short previews. Filter with `item_type`; paginate with `offset`. Free. Do not use to read an item in full (use xcut_get_content).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "canvas_id": {
+            "description": "Canvas id (a UUID) from xcut_list_canvases.",
+            "pattern": "^[0-9a-fA-F-]{36}$",
+            "title": "Canvas Id",
+            "type": "string"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Items to skip, for paging through a large canvas. Default 0.",
+            "maximum": 10000,
+            "minimum": 0,
+            "title": "Offset",
+            "type": "integer"
+          },
+          "limit": {
+            "default": 50,
+            "description": "Most items to return, 1-100. Default 50.",
+            "maximum": 100,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "item_type": {
+            "anyOf": [
+              {
+                "enum": [
+                  "post",
+                  "note",
+                  "chat",
+                  "group",
+                  "ad",
+                  "analytics",
+                  "website",
+                  "media"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Only list this kind of item.",
+            "title": "Item Type"
+          }
+        },
+        "required": [
+          "canvas_id"
+        ],
+        "title": "xcut_get_canvasArguments"
+      },
+      "annotations": {
+        "title": "Get a canvas",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_create_canvas",
+      "title": "Create a canvas",
+      "description": "Use this when the user asks for a new, separate XcutAI canvas for a project, client or campaign. Returns its id. Free. Do not use just to import or write: those tools pick a canvas automatically.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name for the new canvas, e.g. \"Q4 launch\" or \"Client: Glow Skincare\".",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "xcut_create_canvasArguments"
+      },
+      "annotations": {
+        "title": "Create a canvas",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_get_brand",
+      "title": "Get brand memory",
+      "description": "Use this when you are about to write for the user's brand and need its voice, niche, audience and offer, or the user asks what XcutAI knows about their brand. Returns the canvas's brand profile and saved memory facts with ids. Free. Do not use for public creators the user does not own (use xcut_find_outliers or xcut_search_viral).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "canvas_id": {
+            "description": "Canvas id (a UUID) from xcut_list_canvases. The brand attached to this canvas is returned.",
+            "pattern": "^[0-9a-fA-F-]{36}$",
+            "title": "Canvas Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "canvas_id"
+        ],
+        "title": "xcut_get_brandArguments"
+      },
+      "annotations": {
+        "title": "Get brand memory",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_save_memory",
+      "title": "Save a brand memory fact",
+      "description": "Use this when the user states a lasting fact about their brand (voice, audience, offer, constraint, posting schedule) so every XcutAI agent uses it from now on. Adds a new fact; never changes or removes one. Free. Do not use to change an existing fact (use xcut_update_memory) or for one-off instructions that apply only to the current request.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "canvas_id": {
+            "description": "Canvas id (a UUID) from xcut_list_canvases. The fact is saved to this canvas's brand.",
+            "pattern": "^[0-9a-fA-F-]{36}$",
+            "title": "Canvas Id",
+            "type": "string"
+          },
+          "text": {
+            "description": "The fact, in one or two sentences.",
+            "maxLength": 2000,
+            "minLength": 2,
+            "title": "Text",
+            "type": "string"
+          },
+          "category": {
+            "default": "fact",
+            "description": "What kind of fact it is.",
+            "enum": [
+              "subject_type",
+              "brand_name",
+              "niche",
+              "brand_voice",
+              "language",
+              "visual_style",
+              "audience",
+              "content_format",
+              "content_pillars",
+              "hook_patterns",
+              "cta_style",
+              "kpi_focus",
+              "platform",
+              "posting_schedule",
+              "offer",
+              "competitors",
+              "constraint",
+              "content_preference",
+              "fact",
+              "other"
+            ],
+            "title": "Category",
+            "type": "string"
+          }
+        },
+        "required": [
+          "canvas_id",
+          "text"
+        ],
+        "title": "xcut_save_memoryArguments"
+      },
+      "annotations": {
+        "title": "Save a brand memory fact",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_update_memory",
+      "title": "Update a brand memory fact",
+      "description": "Use this when the user asks to change a saved brand memory fact. Replaces that fact's text and category (the old text is not kept). Needs the fact's id from xcut_get_brand. Free. Do not use to add a new fact (use xcut_save_memory).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "canvas_id": {
+            "description": "Canvas id (a UUID) from xcut_list_canvases.",
+            "pattern": "^[0-9a-fA-F-]{36}$",
+            "title": "Canvas Id",
+            "type": "string"
+          },
+          "memory_id": {
+            "description": "Id of the fact to change, from xcut_get_brand.",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Memory Id",
+            "type": "string"
+          },
+          "text": {
+            "description": "The fact's new text.",
+            "maxLength": 2000,
+            "minLength": 2,
+            "title": "Text",
+            "type": "string"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "enum": [
+                  "subject_type",
+                  "brand_name",
+                  "niche",
+                  "brand_voice",
+                  "language",
+                  "visual_style",
+                  "audience",
+                  "content_format",
+                  "content_pillars",
+                  "hook_patterns",
+                  "cta_style",
+                  "kpi_focus",
+                  "platform",
+                  "posting_schedule",
+                  "offer",
+                  "competitors",
+                  "constraint",
+                  "content_preference",
+                  "fact",
+                  "other"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "New kind of fact. Omit to keep the current one.",
+            "title": "Category"
+          }
+        },
+        "required": [
+          "canvas_id",
+          "memory_id",
+          "text"
+        ],
+        "title": "xcut_update_memoryArguments"
+      },
+      "annotations": {
+        "title": "Update a brand memory fact",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_delete_memory",
+      "title": "Delete a brand memory fact",
+      "description": "Use this when the user asks to remove a saved brand memory fact from XcutAI. Needs the fact's id from xcut_get_brand. Do not use to change a fact (use xcut_update_memory).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "canvas_id": {
+            "description": "Canvas id (a UUID) from xcut_list_canvases.",
+            "pattern": "^[0-9a-fA-F-]{36}$",
+            "title": "Canvas Id",
+            "type": "string"
+          },
+          "memory_id": {
+            "description": "Id of the memory fact to remove, from xcut_get_brand.",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Memory Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "canvas_id",
+          "memory_id"
+        ],
+        "title": "xcut_delete_memoryArguments"
+      },
+      "annotations": {
+        "title": "Delete a brand memory fact",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_list_calendar",
+      "title": "List calendar posts",
+      "description": "Use this when the user asks what content is planned or scheduled: posts on their XcutAI content calendar between two dates, optionally for one canvas, with status (draft, in review, approved, scheduled, published). Free. Do not use for posts already live on social media (use xcut_profile_analytics).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "ISO date, e.g. 2026-10-01.",
+            "title": "Start"
+          },
+          "end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "ISO date, e.g. 2026-10-31.",
+            "title": "End"
+          },
+          "canvas_id": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9a-fA-F-]{36}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Only posts planned for this canvas (UUID). Omit for all canvases.",
+            "title": "Canvas Id"
+          },
+          "limit": {
+            "default": 60,
+            "description": "Most posts to return, 1-200. Default 60.",
+            "maximum": 200,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "title": "xcut_list_calendarArguments"
+      },
+      "annotations": {
+        "title": "List calendar posts",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_add_to_calendar",
+      "title": "Add a post to the calendar",
+      "description": "Use this when the user wants a planned post saved to their XcutAI content calendar: title, platform, type, date, and optionally caption and hashtags. Saved as a draft unless a status is given. Free. Do not use to publish: XcutAI never posts to social media.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "Short working title, e.g. \"3 myths about retinol\".",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Title",
+            "type": "string"
+          },
+          "platform": {
+            "description": "Where it will be posted: instagram, facebook, tiktok, youtube or meta (Meta ads).",
+            "enum": [
+              "instagram",
+              "facebook",
+              "tiktok",
+              "youtube",
+              "meta"
+            ],
+            "title": "Platform",
+            "type": "string"
+          },
+          "scheduled_at": {
+            "description": "ISO date or date-time.",
+            "title": "Scheduled At",
+            "type": "string"
+          },
+          "post_type": {
+            "default": "post",
+            "description": "Format: post, image, video, carousel, reel, story, idea, script or ad. Default post.",
+            "enum": [
+              "post",
+              "image",
+              "video",
+              "carousel",
+              "reel",
+              "story",
+              "idea",
+              "script",
+              "ad"
+            ],
+            "title": "Post Type",
+            "type": "string"
+          },
+          "caption": {
+            "anyOf": [
+              {
+                "maxLength": 20000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Full caption or script text, if written.",
+            "title": "Caption"
+          },
+          "hashtags": {
+            "anyOf": [
+              {
+                "items": {
+                  "maxLength": 100,
+                  "type": "string"
+                },
+                "maxItems": 30,
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Hashtags without spaces, e.g. [\"#skincare\", \"#retinol\"]. Up to 30.",
+            "title": "Hashtags"
+          },
+          "canvas_id": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9a-fA-F-]{36}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Canvas (UUID) the post belongs to. Optional.",
+            "title": "Canvas Id"
+          },
+          "status": {
+            "default": "draft",
+            "description": "draft, in_review, approved, scheduled or published. Default draft. Setting it never publishes anything.",
+            "enum": [
+              "draft",
+              "in_review",
+              "approved",
+              "scheduled",
+              "published"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "platform",
+          "scheduled_at"
+        ],
+        "title": "xcut_add_to_calendarArguments"
+      },
+      "annotations": {
+        "title": "Add a post to the calendar",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_update_calendar_post",
+      "title": "Update a calendar post",
+      "description": "Use this when the user wants to change a post on their XcutAI calendar: date, caption, hashtags, title, type or status (for example mark it approved). Only the fields given change; their old values are not kept. Free. Do not use to publish: XcutAI never posts to social media.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "post_id": {
+            "description": "Id (UUID) of the calendar post, from xcut_list_calendar.",
+            "pattern": "^[0-9a-fA-F-]{36}$",
+            "title": "Post Id",
+            "type": "string"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "maxLength": 300,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "New title.",
+            "title": "Title"
+          },
+          "scheduled_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "New date and time in ISO 8601, e.g. \"2026-11-03T18:00:00Z\".",
+            "title": "Scheduled At"
+          },
+          "caption": {
+            "anyOf": [
+              {
+                "maxLength": 20000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "New caption or script text.",
+            "title": "Caption"
+          },
+          "hashtags": {
+            "anyOf": [
+              {
+                "items": {
+                  "maxLength": 100,
+                  "type": "string"
+                },
+                "maxItems": 30,
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "New hashtag list; replaces the old one. Up to 30.",
+            "title": "Hashtags"
+          },
+          "post_type": {
+            "anyOf": [
+              {
+                "enum": [
+                  "post",
+                  "image",
+                  "video",
+                  "carousel",
+                  "reel",
+                  "story",
+                  "idea",
+                  "script",
+                  "ad"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "New format: post, image, video, carousel, reel, story, idea, script or ad.",
+            "title": "Post Type"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "enum": [
+                  "draft",
+                  "in_review",
+                  "approved",
+                  "scheduled",
+                  "published"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "New status: draft, in_review, approved, scheduled or published. Never publishes anything.",
+            "title": "Status"
+          }
+        },
+        "required": [
+          "post_id"
+        ],
+        "title": "xcut_update_calendar_postArguments"
+      },
+      "annotations": {
+        "title": "Update a calendar post",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_delete_calendar_post",
+      "title": "Delete a calendar post",
+      "description": "Use this when the user explicitly asks to remove a post from their XcutAI content calendar. Do not use to reschedule or edit (use xcut_update_calendar_post).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "post_id": {
+            "description": "Id (UUID) of the calendar post to remove, from xcut_list_calendar.",
+            "pattern": "^[0-9a-fA-F-]{36}$",
+            "title": "Post Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "post_id"
+        ],
+        "title": "xcut_delete_calendar_postArguments"
+      },
+      "annotations": {
+        "title": "Delete a calendar post",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_get_breakouts",
+      "title": "Get breakout alerts and trends",
+      "description": "Use this when the user asks what is breaking out or trending in their own niche right now: XcutAI's breakout alerts from the accounts on their watchlist, plus trending keywords, from the last scan. Free. Do not use for a topic or creator outside their watchlist (use xcut_search_viral).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "default": 20,
+            "description": "Most breakout alerts to return, 1-50. Default 20.",
+            "maximum": 50,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "title": "xcut_get_breakoutsArguments"
+      },
+      "annotations": {
+        "title": "Get breakout alerts and trends",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_scan_watchlist",
+      "title": "Scan watched accounts now",
+      "description": "Use this when the user wants fresh breakouts now instead of waiting for the daily scan. Rescans the accounts on their XcutAI watchlist; allowed once an hour; costs 1 credit per account. Set `estimate` to true to get the cost without scanning. Do not use to read the latest results (use xcut_get_breakouts).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "estimate": {
+            "default": false,
+            "description": "true returns the credit cost without scanning. Default false.",
+            "title": "Estimate",
+            "type": "boolean"
+          }
+        },
+        "title": "xcut_scan_watchlistArguments"
+      },
+      "annotations": {
+        "title": "Scan watched accounts now",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_search_viral",
+      "title": "Search the viral library",
+      "description": "Use this when the user asks what is going viral, trending or performing right now on Instagram, TikTok, YouTube or Facebook for a topic or niche, what a creator posts that works, or what ads run in the Meta Ad Library. `mode` is keyword (a topic) or profile (an account). Returns posts with views, engagement, links and captions, plus `next_cursor` for more. 2 credits per page (cached pages free). Do not use for general web or news search, or for one profile's outliers versus its own normal (use xcut_find_outliers).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "description": "instagram, tiktok, youtube, facebook, or meta_ads for the Meta Ad Library.",
+            "enum": [
+              "instagram",
+              "tiktok",
+              "youtube",
+              "facebook",
+              "meta_ads"
+            ],
+            "title": "Platform",
+            "type": "string"
+          },
+          "query": {
+            "description": "A topic, or a handle when mode is profile.",
+            "maxLength": 200,
+            "minLength": 2,
+            "title": "Query",
+            "type": "string"
+          },
+          "mode": {
+            "default": "keyword",
+            "description": "keyword to search a topic (e.g. \"meal prep\"), or profile to see an account's top posts (query = @handle). Default keyword. Facebook supports profile only.",
+            "enum": [
+              "keyword",
+              "profile"
+            ],
+            "title": "Mode",
+            "type": "string"
+          },
+          "cursor": {
+            "anyOf": [
+              {
+                "maxLength": 2000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "next_cursor from the previous page.",
+            "title": "Cursor"
+          },
+          "limit": {
+            "default": 15,
+            "description": "Posts per page, 1-30. Default 15.",
+            "maximum": 30,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "platform",
+          "query"
+        ],
+        "title": "xcut_search_viralArguments"
+      },
+      "annotations": {
+        "title": "Search the viral library",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_find_outliers",
+      "title": "Find a profile's outlier posts",
+      "description": "Use this when the user asks which of a creator's, competitor's or their own posts performed best or beat the account's normal, or what works for an account before writing. Scores the latest 20, 30, 50 or 100 posts against that account's own median and says by how much each beat it. About 1 credit per post. Longer runs return a `job_id` for xcut_get_job. Do not use for a full metrics table (use xcut_profile_analytics) or for a topic across many accounts (use xcut_search_viral).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "profile": {
+            "description": "Profile link or @handle.",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Profile",
+            "type": "string"
+          },
+          "platform": {
+            "description": "instagram, tiktok, youtube or facebook.",
+            "enum": [
+              "instagram",
+              "tiktok",
+              "youtube",
+              "facebook"
+            ],
+            "title": "Platform",
+            "type": "string"
+          },
+          "posts": {
+            "default": 30,
+            "description": "How many recent posts to analyse: 20, 30, 50 or 100. Default 30.",
+            "enum": [
+              20,
+              30,
+              50,
+              100
+            ],
+            "title": "Posts",
+            "type": "integer"
+          },
+          "canvas_id": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9a-fA-F-]{36}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Canvas (UUID) that owns the thumbnails. Optional. The results are returned here, not placed on the canvas.",
+            "title": "Canvas Id"
+          }
+        },
+        "required": [
+          "profile",
+          "platform"
+        ],
+        "title": "xcut_find_outliersArguments"
+      },
+      "annotations": {
+        "title": "Find a profile's outlier posts",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_profile_analytics",
+      "title": "Get profile analytics",
+      "description": "Use this when the user wants an account's per-post metrics (views, likes, comments, shares, engagement) over the last N posts or days, for a performance review or to compare accounts on Instagram, TikTok, YouTube or Facebook. Credit cost depends on platform and post count. Longer runs return a `job_id` for xcut_get_job. Do not use to find standout posts (use xcut_find_outliers).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "profile": {
+            "description": "Profile link or @handle.",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Profile",
+            "type": "string"
+          },
+          "platform": {
+            "description": "instagram, tiktok, youtube or facebook.",
+            "enum": [
+              "instagram",
+              "tiktok",
+              "youtube",
+              "facebook"
+            ],
+            "title": "Platform",
+            "type": "string"
+          },
+          "posts": {
+            "anyOf": [
+              {
+                "maximum": 50,
+                "minimum": 1,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Last N posts (default 20).",
+            "title": "Posts"
+          },
+          "days": {
+            "anyOf": [
+              {
+                "maximum": 3650,
+                "minimum": 1,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Or: posts from the last N days.",
+            "title": "Days"
+          },
+          "canvas_id": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9a-fA-F-]{36}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Canvas (UUID) that owns the thumbnails. Optional. The table is returned here, not placed on the canvas.",
+            "title": "Canvas Id"
+          }
+        },
+        "required": [
+          "profile",
+          "platform"
+        ],
+        "title": "xcut_profile_analyticsArguments"
+      },
+      "annotations": {
+        "title": "Get profile analytics",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_get_job",
+      "title": "Check a job",
+      "description": "Use this when another XcutAI tool returned a `job_id`: it returns status `running` with a suggested wait, or the finished result (outlier analysis, profile analytics, imports with their transcript, agent replies). Free. Do not use without a `job_id` from an XcutAI tool.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "job_id": {
+            "description": "The `job_id` an XcutAI tool returned, unchanged.",
+            "maxLength": 4096,
+            "minLength": 10,
+            "title": "Job Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_id"
+        ],
+        "title": "xcut_get_jobArguments"
+      },
+      "annotations": {
+        "title": "Check a job",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_import_post",
+      "title": "Import a social post",
+      "description": "Use this when the user shares an Instagram, TikTok, YouTube or Facebook post or video link and wants its transcript, a breakdown of why it worked, or their own version of it. XcutAI transcribes the video and reads the caption, visuals and stats. Don't ask which canvas: with none named it goes to the user's \"From AI apps\" canvas. 2 credits plus transcription (a few credits for a short video). Returns a `job_id`; xcut_get_job returns the transcript when done. Do not use for website links (use xcut_import_website) or Meta Ad Library links (use xcut_import_meta_ad).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "description": "Post or video link.",
+            "maxLength": 2048,
+            "minLength": 10,
+            "title": "Url",
+            "type": "string"
+          },
+          "canvas_id": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9a-fA-F-]{36}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional. Leave it out unless the user names a canvas: XcutAI then uses their \"From AI apps\" canvas. Ids come from xcut_list_canvases.",
+            "title": "Canvas Id"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "title": "xcut_import_postArguments"
+      },
+      "annotations": {
+        "title": "Import a social post",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_import_website",
+      "title": "Import a website",
+      "description": "Use this when the user shares a web page (product page, landing page, article) to use as context for writing their content. XcutAI reads the page and stores its text on a canvas. 1 credit. Returns a short preview. Do not use for social media post links (use xcut_import_post).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "description": "Page link.",
+            "maxLength": 2048,
+            "minLength": 4,
+            "title": "Url",
+            "type": "string"
+          },
+          "canvas_id": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9a-fA-F-]{36}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional. Leave it out unless the user names a canvas: XcutAI then uses their \"From AI apps\" canvas. Ids come from xcut_list_canvases.",
+            "title": "Canvas Id"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "title": "xcut_import_websiteArguments"
+      },
+      "annotations": {
+        "title": "Import a website",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_import_meta_ad",
+      "title": "Import a Meta ad",
+      "description": "Use this when the user shares a Meta Ad Library link (facebook.com/ads/library) and wants the ad's copy, media and video transcript to study or remix. Holds up to 12 credits and charges the real cost. May return a `job_id` for xcut_get_job. Do not use for organic Facebook posts (use xcut_import_post).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "description": "Meta Ad Library link (facebook.com/ads/library/?id=…).",
+            "maxLength": 2048,
+            "minLength": 10,
+            "title": "Url",
+            "type": "string"
+          },
+          "canvas_id": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9a-fA-F-]{36}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional. Leave it out unless the user names a canvas: XcutAI then uses their \"From AI apps\" canvas. Ids come from xcut_list_canvases.",
+            "title": "Canvas Id"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "title": "xcut_import_meta_adArguments"
+      },
+      "annotations": {
+        "title": "Import a Meta ad",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_import_profile",
+      "title": "Import a profile's recent posts",
+      "description": "Use this when the user wants to study a creator's or brand's recent posts in depth (Instagram, TikTok, YouTube or Facebook): it adds them to a canvas as a group and transcribes and analyses each. About 1 credit per post plus transcription. Returns a `job_id` while the profile is read. Do not use just to rank posts (use xcut_find_outliers).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "profile": {
+            "description": "Profile link or @handle.",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Profile",
+            "type": "string"
+          },
+          "platform": {
+            "description": "instagram, tiktok, youtube or facebook.",
+            "enum": [
+              "instagram",
+              "tiktok",
+              "youtube",
+              "facebook"
+            ],
+            "title": "Platform",
+            "type": "string"
+          },
+          "posts": {
+            "default": 6,
+            "description": "How many recent posts (default 6).",
+            "maximum": 20,
+            "minimum": 1,
+            "title": "Posts",
+            "type": "integer"
+          },
+          "canvas_id": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9a-fA-F-]{36}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional. Leave it out unless the user names a canvas: XcutAI then uses their \"From AI apps\" canvas. Ids come from xcut_list_canvases.",
+            "title": "Canvas Id"
+          }
+        },
+        "required": [
+          "profile",
+          "platform"
+        ],
+        "title": "xcut_import_profileArguments"
+      },
+      "annotations": {
+        "title": "Import a profile's recent posts",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_add_note",
+      "title": "Add a note to a canvas",
+      "description": "Use this when the user wants a script, hook list, plan or other text saved to XcutAI. Accepts Markdown; with no canvas named it goes to the user's \"From AI apps\" canvas. Free. Do not use for calendar posts (use xcut_add_to_calendar).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "description": "Markdown text.",
+            "maxLength": 100000,
+            "minLength": 1,
+            "title": "Text",
+            "type": "string"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "maxLength": 120,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional note title, e.g. \"Week 1 scripts\".",
+            "title": "Title"
+          },
+          "canvas_id": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9a-fA-F-]{36}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional. Leave it out unless the user names a canvas: XcutAI then uses their \"From AI apps\" canvas. Ids come from xcut_list_canvases.",
+            "title": "Canvas Id"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "xcut_add_noteArguments"
+      },
+      "annotations": {
+        "title": "Add a note to a canvas",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_get_content",
+      "title": "Read an imported item",
+      "description": "Use this when you need the full content of an item on the user's XcutAI canvas, by canvas id and item id (from xcut_get_canvas): a post or video's transcript and stats, a note, a chat's messages (paginate with `before`), a website's text, an analytics table, a Meta ad, or a group's contents. Free. Do not use to list a canvas (use xcut_get_canvas).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "canvas_id": {
+            "description": "Canvas id (a UUID) from xcut_list_canvases.",
+            "pattern": "^[0-9a-fA-F-]{36}$",
+            "title": "Canvas Id",
+            "type": "string"
+          },
+          "item_id": {
+            "description": "Item id from xcut_get_canvas, or the `item_id` an import returned.",
+            "maxLength": 100,
+            "minLength": 3,
+            "title": "Item Id",
+            "type": "string"
+          },
+          "before": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Chats only: message id to page back from.",
+            "title": "Before"
+          }
+        },
+        "required": [
+          "canvas_id",
+          "item_id"
+        ],
+        "title": "xcut_get_contentArguments"
+      },
+      "annotations": {
+        "title": "Read an imported item",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_write_content",
+      "title": "Write with an XcutAI agent",
+      "description": "Use this when the user wants XcutAI's agents to write for their brand: Reels, TikTok and Shorts scripts, YouTube scripts, Facebook posts, Meta ad copy, hooks, captions or plans, using their brand memory, imported posts and XcutAI's library of formats that performed. The conversation is saved to their canvas. Pick `agent` for the platform, or auto. Token-billed (typically 10-40 credits). Longer turns return a `job_id`. Do not use for writing unrelated to the user's social media or marketing content.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "description": "What to write, as the user would ask in the canvas chat.",
+            "maxLength": 20000,
+            "minLength": 3,
+            "title": "Request",
+            "type": "string"
+          },
+          "agent": {
+            "default": "auto",
+            "description": "Which XcutAI writer to use: auto (picks from the request), instagram, tiktok, youtube_script, youtube_shorts, facebook, meta_ad or general. Default auto.",
+            "enum": [
+              "auto",
+              "instagram",
+              "tiktok",
+              "youtube_script",
+              "youtube_shorts",
+              "facebook",
+              "meta_ad",
+              "general"
+            ],
+            "title": "Agent",
+            "type": "string"
+          },
+          "item_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "maxLength": 100,
+                  "type": "string"
+                },
+                "maxItems": 60,
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Only use these canvas items (default: the whole canvas).",
+            "title": "Item Ids"
+          },
+          "canvas_id": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9a-fA-F-]{36}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional. Leave it out unless the user names a canvas: XcutAI then uses their \"From AI apps\" canvas, where imports also land. Ids come from xcut_list_canvases.",
+            "title": "Canvas Id"
+          }
+        },
+        "required": [
+          "request"
+        ],
+        "title": "xcut_write_contentArguments"
+      },
+      "annotations": {
+        "title": "Write with an XcutAI agent",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_run_playbook",
+      "title": "Run an XcutAI playbook",
+      "description": "Use this when the user wants a ready-made content deliverable from what is on their canvas: a month or week content plan, 25 hooks, 3 scripts, breakout remix, competitor teardown or benchmark, prospect audit, ad-angle gap map, ad creatives, carousel or thumbnail concepts. Token-billed (a month plan is roughly 30-60 credits). Longer runs return a `job_id`. Do not use for a single custom request (use xcut_write_content).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "playbook": {
+            "description": "month or week (content plan), hooks (25 hooks), scripts (3 scripts), remix (breakout remix), teardown, benchmark, audit (prospect audit), angles (ad-angle gap map), adcreatives, carousel or thumbnails.",
+            "enum": [
+              "remix",
+              "angles",
+              "benchmark",
+              "audit",
+              "month",
+              "week",
+              "hooks",
+              "teardown",
+              "scripts",
+              "adcreatives",
+              "carousel",
+              "thumbnails"
+            ],
+            "title": "Playbook",
+            "type": "string"
+          },
+          "days": {
+            "anyOf": [
+              {
+                "maximum": 120,
+                "minimum": 3,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Plan length, for month/week plans.",
+            "title": "Days"
+          },
+          "platform": {
+            "anyOf": [
+              {
+                "enum": [
+                  "instagram",
+                  "tiktok",
+                  "youtube",
+                  "facebook"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "The platform to write for, when the playbook follows one.",
+            "title": "Platform"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "maxLength": 4000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Extra instructions from the user.",
+            "title": "Notes"
+          },
+          "canvas_id": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9a-fA-F-]{36}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional. Leave it out unless the user names a canvas: XcutAI then uses their \"From AI apps\" canvas, where imports also land. Ids come from xcut_list_canvases.",
+            "title": "Canvas Id"
+          }
+        },
+        "required": [
+          "playbook"
+        ],
+        "title": "xcut_run_playbookArguments"
+      },
+      "annotations": {
+        "title": "Run an XcutAI playbook",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "xcut_generate_image",
+      "title": "Generate an image",
+      "description": "Use this when the user wants a social media image made or edited: post graphic, carousel slide, thumbnail or ad visual, from a prompt and optional reference image links. Needs the Starter plan or higher; about 10 credits per image. Do not use for images unrelated to the user's content or marketing.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "description": "What to make or change, e.g. \"bold carousel cover: '3 retinol myths', pink gradient, large serif headline\".",
+            "maxLength": 8000,
+            "minLength": 3,
+            "title": "Prompt",
+            "type": "string"
+          },
+          "aspect_ratio": {
+            "default": "1:1",
+            "description": "1:1, 4:5, 9:16, 16:9, 3:4 or 4:3. Default 1:1 (use 4:5 for Instagram feed, 9:16 for Reels and Stories).",
+            "enum": [
+              "1:1",
+              "4:5",
+              "9:16",
+              "16:9",
+              "3:4",
+              "4:3"
+            ],
+            "title": "Aspect Ratio",
+            "type": "string"
+          },
+          "reference_image_urls": {
+            "anyOf": [
+              {
+                "items": {
+                  "maxLength": 2000,
+                  "pattern": "^https://",
+                  "type": "string"
+                },
+                "maxItems": 5,
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Up to 5 public https image links to guide style or to edit.",
+            "title": "Reference Image Urls"
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "title": "xcut_generate_imageArguments"
+      },
+      "annotations": {
+        "title": "Generate an image",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "xcut.read",
+              "xcut.write"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "prompts": [
+    {
+      "name": "whats_viral",
+      "title": "What's going viral in my niche",
+      "description": "Find posts performing right now for a niche, then the patterns behind them.",
+      "arguments": [
+        {
+          "name": "niche",
+          "description": "Your niche or topic, e.g. 'skincare for men'",
+          "required": true
+        },
+        {
+          "name": "platform",
+          "description": "instagram, tiktok, youtube or facebook",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "competitor_teardown",
+      "title": "Competitor teardown",
+      "description": "Find a competitor's outlier posts and explain why they worked.",
+      "arguments": [
+        {
+          "name": "profile",
+          "description": "Competitor profile link or @handle",
+          "required": true
+        },
+        {
+          "name": "platform",
+          "description": "instagram, tiktok, youtube or facebook",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "scripts_from_canvas",
+      "title": "Write scripts from my canvas",
+      "description": "Write short-form scripts from what's on an XCut AI canvas, in your brand's voice.",
+      "arguments": [
+        {
+          "name": "canvas",
+          "description": "Canvas name or id",
+          "required": true
+        },
+        {
+          "name": "platform",
+          "description": "instagram, tiktok, youtube or facebook",
+          "required": false
+        },
+        {
+          "name": "count",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "content_plan",
+      "title": "Content plan",
+      "description": "Run XCut AI's content-plan playbook on a canvas.",
+      "arguments": [
+        {
+          "name": "canvas",
+          "description": "Canvas name or id",
+          "required": true
+        },
+        {
+          "name": "days",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "hook_ideas",
+      "title": "Hook ideas",
+      "description": "Proven hook templates for a topic, adapted to your post.",
+      "arguments": [
+        {
+          "name": "topic",
+          "description": "What the post is about",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
