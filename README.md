@@ -43,6 +43,8 @@ Paste it into any app that supports remote MCP servers. For Claude, use `https:/
 > *"Make a 2-week Instagram content plan from my research canvas and put it on my calendar."*
 >
 > *"What Meta ads are competitors running for protein powder?"*
+>
+> *"How did my last reel do against my usual, and when should I post next?"*
 
 ## Install
 
@@ -135,13 +137,13 @@ Use the buttons above, or add the server URL as a remote MCP server. Apps that c
 | **Create** | Scripts, hooks, captions and ad copy from XCut AI's own agents, written with your brand memory · ready-made playbooks (month and week plans, teardowns, ad angles) | Sign in, uses credits |
 | **Workspace** | Your canvases, brand memory, content calendar, credit balance | Sign in |
 
-The plugin for Claude Code, Codex and ChatGPT adds seven skills that teach the assistant how to chain these tools: `viral-research`, `content-ideas`, `outlier-to-script`, `hooks-captions-bios`, `analytics-review`, `meta-ads-research` and `content-plan`.
+The plugin for Claude Code, Codex and ChatGPT adds twelve skills that teach the assistant how to chain these tools: `viral-research`, `content-ideas`, `outlier-to-script`, `hooks-captions-bios`, `analytics-review`, `meta-ads-research`, `content-plan`, `analyze-post`, `creator-report`, `watchlist-insights`, `find-creators` and `my-results`. Guides and example prompts for each: [xcut.ai/mcp/skills](https://xcut.ai/mcp#skills).
 
 ## Good to know
 
 - **Your data stays yours.** XCut AI never sees your chat history with the assistant. Usage records hold which tool ran and when, not what you asked, and are deleted after 90 days. [Privacy policy](https://xcut.ai/privacy-policy#ai-assistants).
 - **You stay in control.** Disconnect any app or revoke any key in **Settings → Connected apps**, where you can also see every request it made.
-- **It never posts for you.** XCut AI drafts and plans. It doesn't publish to social media.
+- **Nothing posts.** XCut AI researches, writes and plans. It never posts to social media or spends money.
 - **Public data only.** XCut AI imports publicly available posts, profiles and ads, using official platform APIs and licensed data providers.
 
 ## Repository layout

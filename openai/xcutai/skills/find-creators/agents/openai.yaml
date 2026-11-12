@@ -1,0 +1,7 @@
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "xcutai"
+      description: "XCut AI: viral content research and writing for Instagram, TikTok, YouTube, Facebook and Meta ads"
+      transport: "streamable_http"
+      url: "https://mcp.xcut.ai/mcp"

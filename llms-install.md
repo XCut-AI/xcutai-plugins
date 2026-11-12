@@ -20,4 +20,4 @@ XCut AI is a hosted remote MCP server. There is nothing to clone, build or insta
 3. Hooks, playbooks and quick tools work straight away with no account.
 4. Tools that use canvases, brand memory, imports or credits ask the user to sign in to XCut AI with OAuth the first time. Complete the sign-in in the browser window that opens.
 
-XCut AI never publishes to social media.
+XCut AI never posts to social media or spends money: it researches, writes and plans.

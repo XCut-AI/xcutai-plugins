@@ -17,4 +17,4 @@ Explicit user instructions take priority over these steps.
    Put any extra instructions from the user in `notes`.
 3. Put posts on the calendar with `xcut_add_to_calendar`. Read it with `xcut_list_calendar`, move or edit with `xcut_update_calendar_post`, and use `xcut_delete_calendar_post` only when the user asks for a deletion.
 
-XCut AI plans and drafts. It does not publish to social media, so never say a post was published.
+4. XCut AI does not post to social media. The user posts from the app itself; when they say a post went out, set its status to published with `xcut_update_calendar_post`.
